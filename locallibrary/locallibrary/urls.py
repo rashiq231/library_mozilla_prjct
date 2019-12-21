@@ -15,7 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+#For url redirection
+from django.views.generic import RedirectView
+
 
 urlpatterns = [
+    # add url maps to redirect to the base URL
+    # redirecting to a basic views
+    path('', RedirectView.as_view(url='catalog/',permanent =True)),
     path('admin/', admin.site.urls),
 ]
+
+
+# use include() to add paths form tyhe catalog Application
+from django.urls import include
+
+urlpatterns+=[
+    path('catalog/', include('catalog.urls')),
+]
+
+
+#Use statuc() to add URl mapping to server static files during development
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
