@@ -22,7 +22,7 @@ from django.views.generic import RedirectView
 urlpatterns = [
     # add url maps to redirect to the base URL
     # redirecting to a basic views
-    path('', RedirectView.as_view(url='catalog/',permanent =True)),
+    path('', RedirectView.as_view(url='catalog/', permanent =True)),
     path('admin/', admin.site.urls),
 ]
 
